@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:motan="http://api.weibo.com/schema/motan"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+ http://api.weibo.com/schema/motan http://api.weibo.com/schema/motan.xsd">
+    <motan:protocol name="motan" lazyInit="true"/>
+
+    <!--<motan:registry regProtocol="zookeeper" name="my_zookeeper" address="zookeeper_ip1:port"/>-->
+
+    <!-- RMS回调配置 -->
+<!--    <motan:registry id="rmsRegistry" name="rmsRegistry" regProtocol="direct" address="127.0.0.1:17311"/>
+    <motan:protocol id="rmsProtocol" name="motan" default="true" maxClientConnection="200" minClientConnection="200"/>
+    <motan:basicReferer id="rmsClientBasicConfig" registry="rmsRegistry"
+                        application="rmsApi" group="MOTAN-DMP-RPC" module="MOTAN-DMP-RPC"
+                        protocol="rmsProtocol" requestTimeout="8000" retries="3"/>
+
+    <motan:referer id="ATHENA-RPC" interface="com.geekplus.venus.device.api.call.RpcCallbackApi"
+                   basicReferer="rmsClientBasicConfig"/>-->
+
+
+<!--    &lt;!&ndash; inner注册中心配置 &ndash;&gt;
+    <motan:registry id="rmsRegistry" name="rmsRegistry" regProtocol="local"/>
+    &lt;!&ndash; inner协议配置 &ndash;&gt;
+    <motan:protocol id="rmsProtocol" name="motan" default="true" maxServerConnection="200" maxWorkerThread="200"/>
+    &lt;!&ndash; inner-service基础配置 &ndash;&gt;
+    <motan:basicService id="rmsServiceBasicConfig" registry="rmsRegistry"
+                        application="rmsApi" group="MOTAN-DMP-RPC" module="MOTAN-DMP-RPC"
+                        export="rmsProtocol:17311" shareChannel="true" version="1.0.0"/>-->
+
+
+    <!-- outer-rpc服务注册 -->
+    <!--<bean id="deviceTaskApiImp" class="com.geekplus.venus.device.api.impl.DeviceTaskApiImpl"/>-->
+<!--    <motan:service interface="com.geekplus.venus.device.api.DeviceTaskApi" ref="deviceTaskApiImp"
+                   basicService="dmpServiceBasicConfig"/>-->
+    <!-- outer-rpc服务注册 -->
+    <!--<bean id="deviceInstructionApiImpl" class="com.geekplus.venus.device.api.impl.DeviceInstructionApiImpl"/>-->
+<!--    <motan:service interface="com.geekplus.venus.device.api.DeviceInstructionApi" ref="deviceInstructionApiImpl"
+                   basicService="dmpServiceBasicConfig"/>-->
+    <!-- 引用设备管理平台的接口 -->
+    <motan:referer id="deviceTaskApi"
+                   interface="com.geekplus.venus.device.api.DeviceTaskApi"
+                   directUrl="127.0.0.1:17310"
+                   requestTimeout="5000"
+                   group="deviceOuter"
+                   version="1.0.0"/>
+
+    <bean id="rpcCallbackApiImpl" class="com.example.socketdemo.rpc.DeviceCallbackImpl"/>
+    <motan:service interface="com.geekplus.venus.device.api.call.RpcCallbackApi"
+                   ref="rpcCallbackApiImpl"
+                   group="MOTAN-DMP-RPC"
+                   export="17311"/>
+    <bean id="testRpcCallbackApiImpl" class="com.example.socketdemo.rpc.TestDeviceCallbackImpl"/>
+    <motan:service interface="com.geekplus.venus.device.api.call.RpcCallbackApi"
+                   ref="testRpcCallbackApiImpl"
+                   group="TEST-RPC"
+                   export="17312"/>
+
+    <motan:referer id="deviceInstructionApi"
+                   interface="com.geekplus.venus.device.api.DeviceInstructionApi"
+                   directUrl="127.0.0.1:17310"
+                   requestTimeout="5000"
+                   group="deviceOuter"
+                   version="1.0.0"/>
+</beans>
