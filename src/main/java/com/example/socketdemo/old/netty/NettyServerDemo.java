@@ -1,3 +1,4 @@
+/*
 package com.example.socketdemo.old.netty;
 
 import io.netty.bootstrap.ServerBootstrap;
@@ -10,6 +11,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.util.AttributeKey;
 
+*/
 /**
  * <p>
  *
@@ -17,7 +19,8 @@ import io.netty.util.AttributeKey;
  *
  * @author zhaodb 2022/2/17
  * @since 3.0.1
- */
+ *//*
+
 public class NettyServerDemo {
 
     public static void main(String[] args) throws InterruptedException {
@@ -41,3 +44,4 @@ public class NettyServerDemo {
 
 
 }
+*/

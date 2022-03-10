@@ -1,3 +1,4 @@
+/*
 package com.example.socketdemo.old.netty;
 
 import io.netty.buffer.ByteBuf;
@@ -6,8 +7,7 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandler;
 
-import com.geekplus.metis.base.common.jackson.util.JSONUtil;
-
+*/
 /**
  * <p>
  *
@@ -15,7 +15,8 @@ import com.geekplus.metis.base.common.jackson.util.JSONUtil;
  *
  * @author zhaodb 2022/2/17
  * @since 3.0.1
- */
+ *//*
+
 public class ChannelHandlerDemo implements ChannelInboundHandler {
     @Override
     public void channelRegistered(ChannelHandlerContext channelHandlerContext) throws Exception {
@@ -94,3 +95,4 @@ public class ChannelHandlerDemo implements ChannelInboundHandler {
         System.out.println("exceptionCaught");
     }
 }
+*/
