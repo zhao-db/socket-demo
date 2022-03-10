@@ -9,7 +9,7 @@ import io.netty.handler.logging.LoggingHandler;
 
 /**
  * <p>
- *
+ * 行解码器 可以自动解析 \r\n  或 \n
  * </p>
  *
  * @author zhaodb 2022/3/10

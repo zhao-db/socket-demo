@@ -9,7 +9,7 @@ import io.netty.handler.logging.LoggingHandler;
 
 /**
  * <p>
- *
+ *  TCL解码器  长度、报头、内容 解码
  * </p>
  *
  * @author zhaodb 2022/3/10
